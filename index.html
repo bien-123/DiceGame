@@ -20,13 +20,30 @@
             right: 0;
             position: absolute;
         }
+
+        .demo {
+            background-color: yellow;
+            width: 200px;
+            height: 200px;
+        }
+        .demo.active {
+            background-color: blue;
+        }
+        .demo.error {
+            background-color: red;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <h1>firstName = {{ firstName }}</h1>
+        <h1>FirstName = {{ firstName }}</h1>
+        <p>{{ about }}</p>
         <input v-model="firstName" type="text" placeholder="Nhap firstName">
         <!-- <input v-on:keyup="handleKeyUp" type="text" placeholder="Nhap firstName"> -->
+        <!-- <textarea v-model="about" name="" id="" cols="30" rows="10"></textarea> -->
+        <button v-on:click="changeActive">Change Active</button>
+        <button v-on:click="changeError">Change Error</button>
+        <div class="demo" v-bind:class="{active: isActive, error: isError}"></div>
     </div>
 </body>
 <script src="main.js"></script>

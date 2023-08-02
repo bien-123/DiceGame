@@ -6,43 +6,33 @@
     <title>VueJS</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
     <style>
-        .tabs {
-            padding: 0;
-            margin: 0;
+        .list-blog {
+            display: flex;
+            /* xuống dòng ô khi hết chiều ngang */
+            flex-wrap: wrap;
         }
-        .tabs li {
-            cursor: pointer;
-            display: inline-block;
-            padding: 10px 15px;
+        .list-blog .blog {
+            width: 25%;
+            margin: 2%;
             border: 1px solid #000;
         }
-        .login, .register {
-            padding: 15px;
-            border: 2px solid blue;
-            margin-top: 20px;
+        .blog .title {
+            font-weight: 700;
+            font-size: 18px;
+            color: blue;
         }
     </style>
 </head>
 <body>
     <div id="app">
-        <ul class="tabs">
-            <li v-on:click="changeTabs('login')">Đăng nhập</li>
-            <li v-on:click="changeTabs('register')">Đăng ký</li>
+        <ul>
+            <li v-for="(value, key) in scores">{{key}}: {{value}} </li>
         </ul>
-        <div class="login" v-if="tabSelected === 'login'">
-            <form action="/">
-                <h2>Form Dang Nhap</h2>
-                <input type="text" name="" placeholder="Nhap username">
-                <input type="password" name="" placeholder="Nhap password">
-            </form>
-        </div>
-        <div class="register" v-else-if="tabSelected === 'register'">
-            <form action="/">
-                <h2>Form Dang Ky</h2>
-                <input type="text" name="" placeholder="Nhap username">
-                <input type="password" name="" placeholder="Nhap password">
-                <input type="password" name="" placeholder="Nhap lai password">
-            </form>
+        <div class="list-blog">
+            <div v-for="(list, index) in listBlogs" class="blog" v-bind:key="index">
+                <div class="title">{{list.title}}</div>
+                <div class="description">{{list.body}}</div>
+            </div>
         </div>
     </div>
 </body>

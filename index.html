@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VueJS</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
 </head>
 <body>
     <header><h1><Header></Header></h1></header>
@@ -13,8 +20,12 @@
     </div>
     <div id="app">
         <!-- Template Syntax -->
-        <p>{{title}}</p>
-        <p>{{say('WORLD')}}</p>
+        <h1>Count: {{counter}}</h1>
+        <button v-on:click="handleClick(5, $event)">Click me</button>
+        <div class="box" v-on:mousemove="handleMouseMove">
+            <p>ClientX: {{clientX}}</p>
+            <p>ClientY: {{clientY}}</p>
+        </div>
     </div>
 </body>
 <script src="main.js"></script>

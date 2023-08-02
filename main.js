@@ -1,11 +1,20 @@
 var vueIntance = new Vue ({
-    el: '#app',
+    el: '#app', //gọi đến id là app
     data: {
-        title: 'Hello'
+        counter: 0,
+        clientX: 0,
+        clientY: 0,
     },
     methods: {
-        say: function(text) {
-            return 'Hello' + text;
+        handleClick(number, event) {
+            console.log('click', event.target);
+            // this.counter += 1;
+            this.counter += number;
+        },
+        handleMouseMove(event) {
+            console.log(event);
+            this.clientX = event.clientX;
+            this.clientY = event.clientY;
         }
     }
 });

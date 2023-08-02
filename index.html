@@ -6,53 +6,43 @@
     <title>VueJS</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
     <style>
-        .box {
-            width: 200px;
-            height: 200px;
-            background-color: aqua;
-            position: relative;
+        .tabs {
+            padding: 0;
+            margin: 0;
         }
-        .box-2 {
-            width: 50px;
-            height: 50px;
-            background-color: red;
-            top: 0;
-            right: 0;
-            position: absolute;
+        .tabs li {
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px 15px;
+            border: 1px solid #000;
         }
-
-        .demo {
-            background-color: yellow;
-            width: 200px;
-            height: 200px;
-        }
-        .demo.active {
-            background-color: blue;
-        }
-        .demo.error {
-            background-color: red;
+        .login, .register {
+            padding: 15px;
+            border: 2px solid blue;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div id="app">
-        <!-- <div v-bind:style="{ backgroundImage: 'url(' + bg + ')' }"> -->
-        <!-- <div v-bind:style="{ backgroundImage: background }"> -->
-        <div v-bind:style="objectStyle">
-            <h1>FirstName = {{ firstName }}</h1>
-            <p>{{ about }}</p>
-            <input v-model="firstName" type="text" placeholder="Nhap firstName">
-            <!-- <input v-on:keyup="handleKeyUp" type="text" placeholder="Nhap firstName"> -->
-            <!-- <textarea v-model="about" name="" id="" cols="30" rows="10"></textarea> -->
-            <button v-on:click="changeActive">Change Active</button>
-            <button v-on:click="changeError">Change Error</button>
-            <div class="demo" v-bind:class="{active: isActive, error: isError}"></div>
-    
-            <hr/>
-    
-            <div v-bind:style="objClass">
-                Test style binding
-            </div>
+        <ul class="tabs">
+            <li v-on:click="changeTabs('login')">Đăng nhập</li>
+            <li v-on:click="changeTabs('register')">Đăng ký</li>
+        </ul>
+        <div class="login" v-if="tabSelected === 'login'">
+            <form action="/">
+                <h2>Form Dang Nhap</h2>
+                <input type="text" name="" placeholder="Nhap username">
+                <input type="password" name="" placeholder="Nhap password">
+            </form>
+        </div>
+        <div class="register" v-else-if="tabSelected === 'register'">
+            <form action="/">
+                <h2>Form Dang Ky</h2>
+                <input type="text" name="" placeholder="Nhap username">
+                <input type="password" name="" placeholder="Nhap password">
+                <input type="password" name="" placeholder="Nhap lai password">
+            </form>
         </div>
     </div>
 </body>

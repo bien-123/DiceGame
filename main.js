@@ -1,34 +1,24 @@
 var vueIntance = new Vue ({
     el: '#app', //gọi đến id là app
     data: {
-        counter: 0,
-        clientX: 0,
-        clientY: 0,
+        message: 'Hello world',
+        a: 0,
+        b: 0,
+        number: 20,
     },
     methods: {
-        handleClick(number, event) {
-            console.log('click', event.target);
-            // this.counter += 1;
-            this.counter += number;
+        reverseMessage: function() {
+            return this.message.split('').reverse().join('')
+        }
+    },
+    computed: {
+        addA() {
+            console.log('addA run');
+            return this.a + this.number;
         },
-        handleMouseMove(event) {
-            console.log(event);
-            this.clientX = event.clientX;
-            this.clientY = event.clientY;
-        },
-        handleSubmitForm(e) {
-            console.log(e);
-        },
-        handleMouseMoveChild(e) {
-            e.stopPropagation();
-            console.log(e.target);
+        addB() {
+            console.log('addB run');
+            return this.b + this.number;
         }
     }
 });
-
-// Hệ thống phản ứng Reactactivity
-console.log(vueIntance)
-
-setTimeout(() => {
-    vueIntance.title = "Welcome to Reactactivity";
-},2000)

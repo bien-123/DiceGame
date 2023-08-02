@@ -23,26 +23,14 @@
     </style>
 </head>
 <body>
-    <header><h1><Header></Header></h1></header>
-    <div class="list-blog">
-        <p>HELLO WORLD</p>
-    </div>
     <div id="app">
-        <!-- Template Syntax -->
-        <h1>Count: {{counter}}</h1>
-        <button v-on:click="handleClick(5, $event)">Click me</button>
-        <div class="box" v-on:mousemove="handleMouseMove">
-            <p>ClientX: {{clientX}}</p>
-            <p>ClientY: {{clientY}}</p>
-            <div class="box-2" v-on:mousemove="handleMouseMoveChild"></div>
-        </div>
-        <form action="./server.php" v-on:submit.prevent = "handleSubmitForm">
-            <label>Nhap firstName</label>
-            <input type="text" name="firstName"> <br>
-            <label>Nhap email</label>
-            <input type="text" name="email"> <br>
-            <input type="submit" value="Dang nhap">
-        </form>
+        <p>{{message}}</p>
+        <p>{{ reverseMessage}}</p>
+        <hr />
+        <button v-on:click="a++">A = A + 1</button>
+        <button v-on:click="b++">B = B + 1</button>
+        <p>Number + A = {{addA}}</p>
+        <p>Number + B = {{addB}}</p>
     </div>
 </body>
 <script src="main.js"></script>

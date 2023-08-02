@@ -4,8 +4,11 @@ var vueIntance = new Vue ({
         firstName: 'Nguyen',
         about: '',
         textClass: 'active',
-        isActive: true,
-        isError: false
+        isActive: false,
+        isError: false,
+        activeColor: 'red',
+        fontSize: 30,
+        bg: 'https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000'
     },
     methods: {
         handleKeyUp(e) {
@@ -13,6 +16,8 @@ var vueIntance = new Vue ({
             // console.log(e.target)
         },
         changeActive() {
+            // true -> false
+            // false -> true
             this.isActive = !this.isActive;
         },
         changeError() {
@@ -22,8 +27,18 @@ var vueIntance = new Vue ({
     computed: {
         objClass: function() {
             return {
-                active: this.active, // active là tên class, this.active là giá trị true hoặc false
+                active: this.active,
                 error: this.error
+            }
+        },
+        background() {
+            return 'url(' + this.bg + ')';
+        },
+        objectStyle: function() {
+            return {
+                backgroundImage: 'url(' + this.bg + ')',
+                margin: '10px',
+                paddingTop: '10px'
             }
         }
     }

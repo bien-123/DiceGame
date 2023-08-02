@@ -15,6 +15,13 @@ var vueIntance = new Vue ({
             console.log(event);
             this.clientX = event.clientX;
             this.clientY = event.clientY;
+        },
+        handleSubmitForm(e) {
+            console.log(e);
+        },
+        handleMouseMoveChild(e) {
+            e.stopPropagation();
+            console.log(e.target);
         }
     }
 });

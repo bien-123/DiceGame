@@ -10,6 +10,15 @@
             width: 200px;
             height: 200px;
             background-color: aqua;
+            position: relative;
+        }
+        .box-2 {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            top: 0;
+            right: 0;
+            position: absolute;
         }
     </style>
 </head>
@@ -25,7 +34,15 @@
         <div class="box" v-on:mousemove="handleMouseMove">
             <p>ClientX: {{clientX}}</p>
             <p>ClientY: {{clientY}}</p>
+            <div class="box-2" v-on:mousemove="handleMouseMoveChild"></div>
         </div>
+        <form action="./server.php" v-on:submit.prevent = "handleSubmitForm">
+            <label>Nhap firstName</label>
+            <input type="text" name="firstName"> <br>
+            <label>Nhap email</label>
+            <input type="text" name="email"> <br>
+            <input type="submit" value="Dang nhap">
+        </form>
     </div>
 </body>
 <script src="main.js"></script>

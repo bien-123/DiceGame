@@ -1,0 +1,15 @@
+.list-blog {
+    display: flex;
+    /* xuống dòng ô khi hết chiều ngang */
+    flex-wrap: wrap;
+}
+.list-blog .blog {
+    width: 25%;
+    margin: 2%;
+    border: 1px solid #000;
+}
+.blog .title {
+    font-weight: 700;
+    font-size: 18px;
+    color: blue;
+}

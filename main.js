@@ -1,6 +1,14 @@
 var vueIntance = new Vue ({
     el: '#app', //gọi đến id là app
     data: {
+        arrUser: [
+            { email: 'test1@example.com', isActive: true },
+            { email: 'test2@example.com', isActive: false },
+            { email: 'test3@example.com', isActive: true },
+            { email: 'test4@example.com', isActive: false },
+            { email: 'test5@example.com', isActive: true },
+            { email: 'test6@example.com', isActive: false },
+        ],
         scores: {
             math: 9.0,
             english: 8.0,
@@ -48,5 +56,10 @@ var vueIntance = new Vue ({
     methods: {
     },
     computed: {
+        userActive() {
+            return this.arrUser.filter(function(u) {
+                return u.isActive;
+            });
+        }
     }
 });

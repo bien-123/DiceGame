@@ -5,26 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VueJS</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
-    <style>
-        .list-blog {
-            display: flex;
-            /* xuống dòng ô khi hết chiều ngang */
-            flex-wrap: wrap;
-        }
-        .list-blog .blog {
-            width: 25%;
-            margin: 2%;
-            border: 1px solid #000;
-        }
-        .blog .title {
-            font-weight: 700;
-            font-size: 18px;
-            color: blue;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="app">
+        <!-- <div class="user" v-for="user in arrUser" v-if="user.isActive">{{ user.email }}</div> -->
+        <div class="user" v-for="user in userActive">{{ user.email }}</div>
         <ul>
             <li v-for="(value, key) in scores">{{key}}: {{value}} </li>
         </ul>

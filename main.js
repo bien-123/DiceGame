@@ -1,65 +1,70 @@
-var vueIntance = new Vue ({
-    el: '#app', //gọi đến id là app
+var vueInstance = new Vue({
+    el: '#app',
     data: {
-        arrUser: [
-            { email: 'test1@example.com', isActive: true },
-            { email: 'test2@example.com', isActive: false },
-            { email: 'test3@example.com', isActive: true },
-            { email: 'test4@example.com', isActive: false },
-            { email: 'test5@example.com', isActive: true },
-            { email: 'test6@example.com', isActive: false },
+        title: 'Áo thun nam thể thao hàng VNXK vải dày mịn - Vải Đốm',
+        url: 'https://www.lazada.vn/products/ao-thun-nam-the-thao-hang-vnxk-vai-day-min-vai-dom-i265780948-s382816279.html',
+        target: '_blank',
+        price: 20000,
+        sale: 0.1,
+        selectedProduct: 2,
+        cardNumber: 1,
+        listProductDetail: [
+            {
+                image: './images/red.jpg',
+                quantity: 0,
+                textColor: 'Màu Đỏ'
+            }, {
+                image: './images/blue.jpg',
+                quantity: 8,
+                textColor: 'Màu Xanh'
+            }, {
+                image: './images/black.jpg',
+                quantity: 2,
+                textColor: 'Màu Đen'
+            }, 
         ],
-        scores: {
-            math: 9.0,
-            english: 8.0,
-            physical: 7.0
-        },
-        listBlogs: [
-            {
-                "usedId": 1,
-                "id": 1,
-                "title": "Xây dựng web với NodeJS & ExpressJS 123",
-                "body": "Học Back-end với Node & ExpressJS framework, hiểu các khái niệm khi làm Back-end và xây dựng RESTful API cho trang web." 
-            },
-            {
-                "usedId": 2,
-                "id": 2,
-                "title": "HTML CSS từ Zero đến Hero",
-                "body": "Trong khóa này chúng ta sẽ cùng nhau xây dựng giao diện 2 trang web là The Band & Shopee." 
-            },
-            {
-                "usedId": 3,
-                "id": 3,
-                "title": "Responsive Với Grid System",
-                "body": "Trong khóa này chúng ta sẽ học về cách xây dựng giao diện web responsive với Grid System, tương tự Bootstrap 4." 
-            },
-            {
-                "usedId": 4,
-                "id": 4,
-                "title": "Lập trình C++ cơ bản, nâng cao",
-                "body": "Khóa học lập trình C++ từ cơ bản tới nâng cao dành cho người mới bắt đầu. Mục tiêu của khóa học này nhằm giúp các bạn nắm được các khái niệm căn cơ của lập trình, giúp các bạn có nền tảng vững chắc để chinh phục con đường trở thành một lập trình viên." 
-            },
-            {
-                "usedId": 5,
-                "id": 5,
-                "title": "Lập Trình JavaScript Cơ Bản",
-                "body": "Học Javascript cơ bản phù hợp cho người chưa từng học lập trình. Với hơn 100 bài học và có bài tập thực hành sau mỗi bài học." 
-            },
-            {
-                "usedId": 6,
-                "id": 6,
-                "title": "Xây Dựng Website với ReactJS",
-                "body": "Khóa học ReactJS từ cơ bản tới nâng cao, kết quả của khóa học này là bạn có thể làm hầu hết các dự án thường gặp với ReactJS. Cuối khóa học này bạn sẽ sở hữu một dự án giống Tiktok.com, bạn có thể tự tin đi xin việc khi nắm chắc các kiến thức được chia sẻ trong khóa học này." 
-            }
-        ]
+        listDesc: [
+            'Chất liệu: polyester và thun',
+            'Thoát mồ hôi tốt',
+            'Áo thun cổ tròn thể thao Hiye chuyên được may từ chất liệu nilon thoáng mát',
+            'Kết hợp thêm sợi thun tạo độ co giãn giúp người tiêu dùng thoải mái khi mặc',
+            'Chất liệu: polyester và thun'
+        ],
+        description: '<p>M&ocirc; tả: &Aacute;o thun cổ tr&ograve;n thể thao Hiye chuy&ecirc;n được may từ chất liệu nilon tho&aacute;ng m&aacute;t v&agrave; tho&aacute;t mồ h&ocirc;i tốt, kết hợp th&ecirc;m sợi thun tạo độ co gi&atilde;n gi&uacute;p người ti&ecirc;u d&ugrave;ng thoải m&aacute;i khi mặc</p> ',
+        testDescription: `<p>Test hjskhfk h</p>
+        <p><strong><span style="background-color:#8e44ad">fhsdjkfhsk&nbsp; hsdjkfk&nbsp;</span></strong></p>`
     },
     methods: {
+        handleClickColor(e, index) {
+            this.selectedProduct = index;
+            // console.log(e, index, this);
+        },
+        classActive(index) {
+            return {
+                active: this.selectedProduct === index
+            }
+        },
+        handleAddToCart(e) {
+            if(this.cardNumber + 1 > this.getProduct.quantity) {
+                alert('So luong khong du');
+            } else {
+                this.cardNumber = this.cardNumber + 1;
+            }
+            console.log(e.target)
+        }
     },
     computed: {
-        userActive() {
-            return this.arrUser.filter(function(u) {
-                return u.isActive;
-            });
+        formatOriginalPrice() {
+            var number = this.price;
+            return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(number);
+        },
+        formatFinalPrice() {
+            var number = this.price - this.sale * this.price;
+            return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(number);
+        },
+        getProduct() {
+            let index = this.selectedProduct;
+            return this.listProductDetail[index];
         }
     }
 });

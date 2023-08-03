@@ -49,19 +49,23 @@ var vueInstance = new Vue({
                 alert('So luong khong du');
             } else {
                 this.cardNumber = this.cardNumber + 1;
+                this.getProduct.quantity = this.getProduct.quantity - 1;
             }
             console.log(e.target)
         }
     },
     computed: {
+        // format VND price
         formatOriginalPrice() {
             var number = this.price;
             return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(number);
         },
+        // tính ra sản phẩm
         formatFinalPrice() {
             var number = this.price - this.sale * this.price;
             return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(number);
         },
+        // lấy thông tin sản phẩm
         getProduct() {
             let index = this.selectedProduct;
             return this.listProductDetail[index];

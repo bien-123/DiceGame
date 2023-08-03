@@ -1,6 +1,6 @@
 <template>
     <div class="user">
-        <p>User Component</p>
+        <p>{{ user.email }}</p>
     </div>
 </template>
 
@@ -8,6 +8,12 @@
 
 export default {
     name: "user",
+    props: {
+        user: {
+            type: Object,
+            default: null
+        }
+    },
     data() {
         return {
             

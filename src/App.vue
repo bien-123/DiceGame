@@ -1,20 +1,23 @@
 <template>
   <div id="app">
-    <CompHeader/>
-    <list-user-vue/>
+    <CompHeader v-bind:title="title"/>
+    <list-user-vue v-bind:list-user="listUser"/>
     
     <!-- <CompFooterVue/> -->
-    <comp-footer-vue />
+    <comp-footer-vue v-bind:title="title"/>
   </div>
 </template>
 
 <script>
 /*
-App
-    Header
-    ListProducts
-      Product
+App (title, listUser[])
+    Header (title)
+    ListUser (listUser[])
+      User (user - object)
     Footer
+    -> props -> những dữ liệu truyền từ Components cha vào components con
+       -> Cú pháp giống thuộc tính
+          -> Sử dụng v-bind:
  */
 import CompHeader from "./components/CompHeader.vue"
 import CompFooterVue from "./components/CompFooter.vue"
@@ -24,7 +27,15 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      title: 'Hello VueJS!',
+      listUser: [
+        {id: 1, email: 'test1@example.com', active: true},
+        {id: 2, email: 'test2@example.com', active: false},
+        {id: 3, email: 'test3@example.com', active: true},
+        {id: 4, email: 'test4@example.com', active: false},
+        {id: 5, email: 'test5@example.com', active: true},
+        {id: 6, email: 'test6@example.com', active: false},
+      ]
     }
   },
   components: {

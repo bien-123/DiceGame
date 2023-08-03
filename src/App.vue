@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <CompHeader/>
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
+    <list-user-vue/>
+    
     <!-- <CompFooterVue/> -->
     <comp-footer-vue />
   </div>
@@ -18,6 +18,8 @@ App
  */
 import CompHeader from "./components/CompHeader.vue"
 import CompFooterVue from "./components/CompFooter.vue"
+import ListUserVue from './components/ListUser.vue'
+
 export default {
   name: 'app',
   data () {
@@ -27,7 +29,8 @@ export default {
   },
   components: {
     CompHeader,
-    CompFooterVue
+    CompFooterVue,
+    ListUserVue
   }
 }
 </script>
@@ -40,23 +43,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
 }
 </style>

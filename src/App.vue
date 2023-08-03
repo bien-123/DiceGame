@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <CompHeader v-bind:title="title"/>
-    <list-user-vue v-bind:list-user="listUser"/>
-    
-    <!-- <CompFooterVue/> -->
-    <comp-footer-vue v-bind:title="title"/>
+    <div class="container">
+      <button v-on:click="title = 'Hoc lap trinh VueJS'">Thay doi title tu Component App.vue</button>
+      <CompHeader 
+        v-bind:title="title"
+        v-on:changeTitleEvent="handleChangeTitle"/>
+      <list-user-vue v-bind:list-user="listUser"/>
+      <comp-footer-vue v-bind:title="title"/>
+    </div>
   </div>
 </template>
 
@@ -42,6 +45,13 @@ export default {
     CompHeader,
     CompFooterVue,
     ListUserVue
+  },
+  methods: {
+    handleChangeTitle(data) {
+      // this.title = "Học lập trình VueJS";
+      this.title = data.title;
+      console.log("handleChangeTitle được gọi sau khi kích hoạt thành công App.vue");
+    }
   }
 }
 </script>
@@ -54,5 +64,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+  min-height: 3000px;
 }
 </style>

@@ -11,7 +11,11 @@
         v-bind:list-user="listUser"/>
       <comp-footer-vue v-bind:title="title"/>
     </div> -->
-    <DemoRef />
+    <!-- <DemoRef /> -->
+    <demo-slot >
+      <div class="app-slot">HELLO WORLD</div>
+    </demo-slot>
+
   </div>
 </template>
 
@@ -30,6 +34,7 @@ import CompHeader from "./components/CompHeader.vue"
 import CompFooterVue from "./components/CompFooter.vue"
 import ListUserVue from './components/ListUser.vue'
 import DemoRef from './components/DemoRef.vue'
+import DemoSlot from './components/DemoSlot.vue'
 
 export default {
   name: 'app',
@@ -50,7 +55,8 @@ export default {
     CompHeader,
     CompFooterVue,
     ListUserVue,
-    DemoRef
+    DemoRef,
+    DemoSlot
   },
   methods: {
     handleChangeTitle(data) {

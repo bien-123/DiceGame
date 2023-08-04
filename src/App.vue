@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="container">
+    <!-- <div class="container">
       <button v-on:click="title = 'Hoc lap trinh VueJS'">Thay doi title tu Component App.vue</button>
       <CompHeader 
         v-bind:title="title"
@@ -10,7 +10,8 @@
         v-on:deleteUserEvent="handleDeleteUser"
         v-bind:list-user="listUser"/>
       <comp-footer-vue v-bind:title="title"/>
-    </div>
+    </div> -->
+    <DemoRef />
   </div>
 </template>
 
@@ -28,6 +29,7 @@ App (title, listUser[])
 import CompHeader from "./components/CompHeader.vue"
 import CompFooterVue from "./components/CompFooter.vue"
 import ListUserVue from './components/ListUser.vue'
+import DemoRef from './components/DemoRef.vue'
 
 export default {
   name: 'app',
@@ -47,7 +49,8 @@ export default {
   components: {
     CompHeader,
     CompFooterVue,
-    ListUserVue
+    ListUserVue,
+    DemoRef
   },
   methods: {
     handleChangeTitle(data) {

@@ -2,7 +2,7 @@
     <div class="comp-tabs">
         <div class="tabs-title">
             <span>{{ title }}</span>
-            <ion-icon name="heart"></ion-icon>
+            <!-- <ion-icon name="heart"></ion-icon> -->
         </div>
         <div class="tabs-content">
             <slot></slot>

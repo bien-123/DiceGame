@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <div class="container">
+    <div class="container">
       <button v-on:click="title = 'Hoc lap trinh VueJS'">Thay doi title tu Component App.vue</button>
       <CompHeader 
         v-bind:title="title"
@@ -10,8 +10,8 @@
         v-on:deleteUserEvent="handleDeleteUser"
         v-bind:list-user="listUser"/>
       <comp-footer-vue v-bind:title="title"/>
-    </div> -->
-    <!-- <DemoRef /> -->
+    </div>
+    <DemoRef />
     <demo-slot >
       <div class="app-slot">HELLO WORLD</div>
     </demo-slot>
@@ -79,6 +79,34 @@ export default {
       console.log('indexDelete sau khi chạy vòng lặp for', indexDelete)
       console.log("handleDeleteUser trong App.vue", data);
     }
+  },
+  beforeCreate() {
+    console.log("beforeCreate", this.title, document.querySelector('.container'))
+  },
+  created() {
+    //Call API, Call Ajax
+    console.log("created", this.title, this.title, document.querySelector('.container'));
+  },
+  beforeMount() {
+    console.log("beforeMount", this.title, this.title, document.querySelector('.container'));
+  },
+  mounted() { 
+    // Nếu muốn sử dụng jQuery -> Chỉ truy xuất DOM được trong mouted -> Có thể sử dụng jQuery
+    console.log("mounted", this.title, this.title, document.querySelector('.container'));
+  },
+  beforeUpdate() {
+    console.log("beforeUpdate", this.title);
+  },
+  updated() {
+    console.log("updated", this.title);
+  },
+  beforeDestroy() {
+    // Được chạy khi đối tượng vue bị hủy bỏ
+    console.log("beforeDestroy");
+  }, 
+  destroyed() {
+    // Destroyed các thư viện của bên thứ 3
+    console.log("destroyed");
   }
 }
 </script>

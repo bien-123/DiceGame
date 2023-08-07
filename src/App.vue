@@ -8,8 +8,8 @@
                 v-bind:scoresPlayer="scoresPlayer"
             />
             <controls-vue v-on:handleNewGame="handleNewGame" />
-            <dices-vue />
-            <popup-rule-vue />
+            <dices-vue v-bind:dices="dices" />
+            <popup-rule-vue v-on:handleConfirm="handleConfirm" v-bind:isOpenPopup="isOpenPopup" />
         </div>
     </div>
 </template>
@@ -24,8 +24,11 @@ export default {
     name: 'app',
     data() {
         return {
+            isPlaying: false,
+            isOpenPopup: false,
             activePlayer: 1, // Ai là người chơi hiện tại
-            scoresPlayer: [13, 30],
+            scoresPlayer: [10, 20],
+            dices: [2, 5],
             currentScore: 30,
         };
     },
@@ -36,7 +39,17 @@ export default {
         PopupRuleVue,
     },
     methods: {
-        handleNewGame() {},
+        handleConfirm() {
+            this.isPlaying = true;
+            this.isOpenPopup = false;
+            this.activePlayer = 0;
+            this.dices = [1, 1];
+            this.scoresPlayer = [0, 0];
+            this.currentScore = 0;
+        },
+        handleNewGame() {
+            this.isOpenPopup = true;
+        },
     },
 };
 </script>

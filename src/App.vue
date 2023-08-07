@@ -8,6 +8,8 @@
                 v-bind:scoresPlayer="scoresPlayer"
             />
             <controls-vue
+                v-bind:finalScore="finalScore"
+                v-on:handleChangeFinalScore="handleChangeFinalScore"
                 v-on:handleHoldScore="handleHoldScore"
                 v-on:handleRollDice="handleRollDice"
                 v-on:handleNewGame="handleNewGame"
@@ -110,6 +112,9 @@ export default {
             } else {
                 alert('Vui lòng nhấn nút NewGame');
             }
+        },
+        handleChangeFinalScore(e) {
+            console.log(e.target);
         },
     },
 };

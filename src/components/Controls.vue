@@ -6,15 +6,40 @@
             <i class="ion-ios-download-outline"></i>Hold
         </button>
 
-        <input type="number" placeholder="Final score" class="final-score" />
+        <input
+            v-bind="finalScore"
+            v-on:input="$emit('handleChangeFinalScore', $event)"
+            type="number"
+            placeholder="Final score"
+            class="final-score"
+        />
+        <!-- <input 
+            v-bind:value="valueDemo"
+            v-on:input="valueDemo = $event.target.value"
+            type="number" placeholder="Final score" class="final-score"> -->
+        <!-- 
+    1. Ràng buộc dữ liệu (Thuộc tính HTML) -> v-bind
+        1 chiều từ data -> input
+
+    2. Ràng buộc dữ liệu 2 chiều  -> v-model
+        - 1 chiều từ data -> input
+        - 1 chiều từ input -> data
+
+    Nếu như nó không phải là data trực tiếp cảu Componet Controls -> Nó không được phép thay đổi
+ -->
     </div>
 </template>
 
 <script>
 export default {
     name: 'controls',
+    props: {
+        finalScore: { type: Number, default: 100 },
+    },
     data() {
-        return {};
+        return {
+            valueDemo: 100,
+        };
     },
     methods: {
         newGame() {

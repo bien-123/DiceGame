@@ -7,7 +7,11 @@
                 v-bind:currentScore="currentScore"
                 v-bind:scoresPlayer="scoresPlayer"
             />
-            <controls-vue v-on:handleRollDice="handleRollDice" v-on:handleNewGame="handleNewGame" />
+            <controls-vue
+                v-on:handleHoldScore="handleHoldScore"
+                v-on:handleRollDice="handleRollDice"
+                v-on:handleNewGame="handleNewGame"
+            />
             <dices-vue v-bind:dices="dices" />
             <popup-rule-vue v-on:handleConfirm="handleConfirm" v-bind:isOpenPopup="isOpenPopup" />
         </div>
@@ -80,6 +84,29 @@ export default {
                     // Cộng dồn vào điểm tạm thời cho người đang chơi
                     this.currentScore = this.currentScore + dice1 + dice2;
                 }
+            } else {
+                alert('Vui lòng nhấn nút NewGame');
+            }
+        },
+        handleHoldScore() {
+            if (this.isPlaying) {
+                // console.log('handleHoldScore');
+                // activePlayer = 0 -> Người chơi 1
+                // activePlayer = 1 -> Người chơi 2
+                // scorePlayer -> array
+                // scorePlayer[0] = scorePlayer[activePlayer]
+                // scorePlayer[1] = scorePlayer[activePlayer]
+
+                // this.activePlayer[this.activePlayer] = this.scoresPlayer[this.activePlayer] + this.currentScore;
+
+                // let cloneScorePLayer = [...scoresPlayer];
+                // cloneScorePLayer[activePlayer] = scoreOld + currentScore;
+                // this.scoresPlayer = cloneScorePLayer;
+
+                let { scoresPlayer, activePlayer, currentScore } = this;
+                let scoreOld = scoresPlayer[activePlayer];
+                this.$set(this.scoresPlayer, activePlayer, scoreOld + currentScore);
+                this.nextPlayer();
             } else {
                 alert('Vui lòng nhấn nút NewGame');
             }

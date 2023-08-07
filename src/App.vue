@@ -3,6 +3,7 @@
         <div class="wrapper clearfix">
             <!-- Props -> Parent to Child -->
             <PlayersVue
+                v-bind:isWinner="isWinner"
                 v-bind:activePlayer="activePlayer"
                 v-bind:currentScore="currentScore"
                 v-bind:scoresPlayer="scoresPlayer"
@@ -33,11 +34,11 @@ export default {
         return {
             isPlaying: false,
             isOpenPopup: false,
-            activePlayer: 1, // Ai là người chơi hiện tại
-            scoresPlayer: [10, 20],
+            activePlayer: 0, // Ai là người chơi hiện tại
+            scoresPlayer: [0, 0],
             dices: [2, 5],
-            currentScore: 30,
-            finalScore: 100,
+            currentScore: 0,
+            finalScore: 50,
         };
     },
     components: {
@@ -45,6 +46,17 @@ export default {
         ControlsVue,
         DicesVue,
         PopupRuleVue,
+    },
+    computed: {
+        isWinner() {
+            let { scoresPlayer, finalScore } = this;
+            if (scoresPlayer[0] >= finalScore || scoresPlayer[1] >= finalScore) {
+                // Dừng cuộc chơi
+                this.isPlaying = false;
+                return true;
+            }
+            return false;
+        },
     },
     methods: {
         nextPlayer() {
@@ -110,7 +122,9 @@ export default {
                 let { scoresPlayer, activePlayer, currentScore } = this;
                 let scoreOld = scoresPlayer[activePlayer];
                 this.$set(this.scoresPlayer, activePlayer, scoreOld + currentScore);
-                this.nextPlayer();
+                if (!this.isWinner) {
+                    this.nextPlayer();
+                }
             } else {
                 alert('Vui lòng nhấn nút NewGame');
             }

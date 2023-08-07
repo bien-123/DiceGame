@@ -8,6 +8,7 @@
                 v-bind:scoresPlayer="scoresPlayer"
             />
             <controls-vue
+                v-bind:isPlaying="isPlaying"
                 v-bind:finalScore="finalScore"
                 v-on:handleChangeFinalScore="handleChangeFinalScore"
                 v-on:handleHoldScore="handleHoldScore"
@@ -36,6 +37,7 @@ export default {
             scoresPlayer: [10, 20],
             dices: [2, 5],
             currentScore: 30,
+            finalScore: 100,
         };
     },
     components: {
@@ -114,7 +116,14 @@ export default {
             }
         },
         handleChangeFinalScore(e) {
-            console.log(e.target);
+            // console.log(e.target.value);
+            // console.log(parseInt(e.target.value));
+            var number = parseInt(e.target.value);
+            if (isNaN(number)) {
+                this.finalScore = '';
+            } else {
+                this.finalScore = number;
+            }
         },
     },
 };

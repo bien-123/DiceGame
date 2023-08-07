@@ -39,6 +39,11 @@ export default {
         PopupRuleVue,
     },
     methods: {
+        nextPlayer() {
+            // activePlayer = 0 -> 1 ====== 1-> 0
+            this.activePlayer = this.activePlayer === 0 ? 1 : 0;
+            this.currentScore = 0;
+        },
         handleConfirm() {
             this.isPlaying = true;
             this.isOpenPopup = false;
@@ -63,6 +68,18 @@ export default {
                 var dice2 = Math.floor(Math.random() * 6) + 1;
                 this.dices = [dice1, dice2];
                 console.log(dice1, dice2);
+                if (dice1 === 1 || dice2 === 1) {
+                    let activePlayer = this.activePlayer;
+                    setTimeout(function() {
+                        alert(`Người chơi Player ${activePlayer + 1} đã quay trúng số 1. Rất tiếc!`);
+                    }, 20);
+                    //Đổi lượt chơi
+                    this.nextPlayer();
+                    // Reset điểm tạm thời
+                } else {
+                    // Cộng dồn vào điểm tạm thời cho người đang chơi
+                    this.currentScore = this.currentScore + dice1 + dice2;
+                }
             } else {
                 alert('Vui lòng nhấn nút NewGame');
             }

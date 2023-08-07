@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <div class="wrapper clearfix">
-      <PlayersVue />
+      <!-- Props -> Parent to Child -->
+      <PlayersVue
+        v-bind:activePlayer="activePlayer"
+        v-bind:currentScore="currentScore"
+        v-bind:scoresPlayer="scoresPlayer"
+      />
       <controls-vue />
       <dices-vue />
     </div>
@@ -17,14 +22,16 @@ export default {
   name: "app",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
+      activePlayer: 1, // Ai là người chơi hiện tại
+      scoresPlayer: [13, 30],
+      currentScore: 30
     };
   },
   components: {
     PlayersVue,
     ControlsVue,
-    DicesVue,
-  },
+    DicesVue
+  }
 };
 </script>
 
@@ -66,5 +73,4 @@ body {
   box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
-
 </style>

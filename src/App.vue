@@ -7,7 +7,7 @@
                 v-bind:currentScore="currentScore"
                 v-bind:scoresPlayer="scoresPlayer"
             />
-            <controls-vue v-on:handleNewGame="handleNewGame" />
+            <controls-vue v-on:handleRollDice="handleRollDice" v-on:handleNewGame="handleNewGame" />
             <dices-vue v-bind:dices="dices" />
             <popup-rule-vue v-on:handleConfirm="handleConfirm" v-bind:isOpenPopup="isOpenPopup" />
         </div>
@@ -49,6 +49,23 @@ export default {
         },
         handleNewGame() {
             this.isOpenPopup = true;
+        },
+        handleRollDice() {
+            console.log('handleRollDice app.vue');
+            if (this.isPlaying) {
+                //Xoay xúc xắc
+                // Math.random(): 0-> 1
+                /**
+                 * 0 <= X <= 1
+                 * 0 <= Y = X*6 <=6
+                 */
+                var dice1 = Math.floor(Math.random() * 6) + 1;
+                var dice2 = Math.floor(Math.random() * 6) + 1;
+                this.dices = [dice1, dice2];
+                console.log(dice1, dice2);
+            } else {
+                alert('Vui lòng nhấn nút NewGame');
+            }
         },
     },
 };
